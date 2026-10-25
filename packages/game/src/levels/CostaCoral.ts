@@ -148,6 +148,7 @@ export class CostaCoral extends Level {
     const bushMesh = new THREE.InstancedMesh(bushGeo, bushMat, bushCount);
     bushMesh.castShadow = true;
     bushMesh.receiveShadow = true;
+    const dummy = new THREE.Object3D();
     for (let i = 0; i < bushCount; i++) {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
