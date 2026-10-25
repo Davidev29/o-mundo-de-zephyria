@@ -1,0 +1,478 @@
+Documento de Design de Jogo (GDD) — Versão 1.0
+1. PREMISSA
+🌋 O Mundo de Zephyria
+Séculos atrás, o arquipélago de Zephyria era um paraíso intocado, protegido por cinco Cristais Elementais mantidos pelos Guardiões Dinossauros — criaturas ancestrais que viviam em harmonia com a natureza. Cada cristal controlava um elemento: Terra, Fogo, Gelo, Vento e Trovão.
+
+O equilíbrio foi quebrado quando uma raça alienígena conhecida como Os Vorax — seres biomecânicos que se alimentam da energia vital de planetas — invadiu Zephyria. Eles corromperam os Guardiões Dinossauros, transformando-os em bestas violentas, e roubaram os Cristais Elementais para alimentar sua nave-mãe, a Núcleo Devorador.
+
+Tina, arqueóloga e especialista em civilizações antigas, descobriu a localização do Templo de Zephyria — o único lugar capaz de restaurar os cristais. Mas antes que pudesse revelar seus achados, foi capturada pelos Vorax.
+
+Agora, Master Higgins — agora com uma equipe de aventureiros (os jogadores) — precisa:
+
+Resgatar Tina das garras dos Vorax
+
+Libertar os Guardiões Dinossauros da corrupção
+
+Recuperar os 5 Cristais Elementais
+
+Destruir o Núcleo Devorador antes que Zephyria seja consumida
+
+Diferença crucial do original: O jogo não é mais uma jornada solo. Higgins lidera uma resistência de aventureiros (os outros jogadores), cada um com habilidades complementares. A narrativa se desenrola através de cutscenes cooperativas onde as decisões do grupo afetam o desenrolar da história.
+
+2. PROPOSTA DO JOGO
+🎯 Pitch em Uma Frase
+"Um platformer de ação 3D cooperativo onde você e seus amigos exploram ilhas vivas, domesticam dinossauros elementais e enfrentam um exército alienígena em um mundo que reage às suas escolhas."
+
+🧩 Pilares de Design
+Pilar	Descrição	Como se manifesta
+Sobrevivência Ativa	A barra de vida drena constantemente; frutas e recursos são vitais	Sistema de fome + stamina + coleta estratégica
+Exploração Vertical	Níveis 3D com múltiplos caminhos, segredos e atalhos	Wall jumps, escaladas, asas-delta, túneis subterrâneos
+Dinossauros como Ferramentas	Cada dino tem habilidade única que resolve puzzles	Montaria, combate, travessia e exploração
+Mundo Vivo	Ilhas reagem ao clima, horário e ações dos jogadores	Ciclo dia/noite, clima dinâmico, ecossistema reativo
+Desafio Constante	Sempre há algo novo para dominar	Eventos mundiais, chefes semanais, desafios diários
+🎮 Modos de Jogo
+Modo	Jogadores	Descrição
+Campanha Co-op	1–4	Jornada narrativa principal, progressão compartilhada
+Corrida Selvagem	2–8	Competição de velocidade através das ilhas
+Sobrevivência Vorax	1–4	Hordas infinitas de inimigos em arenas
+Duelo de Guardiões	2–4	PvP montado em dinossauros
+Expedição Semanal	1–4	Desafio rotativo com modificadores únicos
+3. ESTRUTURA DAS FASES (8 ILHAS)
+🗺️ Visão Geral do Mundo
+text
+ZEPHYRIA (Mapa-Múndi 3D)
+│
+├── 🏝️ ILHA 1: Costa Coral (Tutorial Expandido)
+├── 🌋 ILHA 2: Forja Vulcânica
+├── ❄️ ILHA 3: Picos Glaciais
+├── 🌪️ ILHA 4: Penhascos Tempestade
+├── 🌵 ILHA 5: Deserto Esquecido
+├── 🌊 ILHA 6: Abismo Abissal
+├── 🌌 ILHA 7: Fortaleza Vorax
+└── 💀 ILHA 8: Núcleo Devorador
+🏝️ ILHA 1: COSTA CORAL
+Tema: Praias tropicais, cavernas marinhas, florestas densas
+Duração: 25–35 min por fase
+Objetivo: Encontrar o primeiro Guardião Dinossauro e libertá-lo
+
+Fase	Nome	Mecânica Nova	Chefe
+1-1	Praia do Naufrágio	Movimento básico, coleta de frutas	—
+1-2	Selva dos Sussurros	Wall jump, escalada em vinhas	—
+1-3	Cavernas Coralinas	Natação, respiração limitada	—
+1-4	Templo Submerso	Puzzle de correntes, cristais	Guardião Aqua (dinossauro corrompido)
+Segredos: 3 passagens secretas, 1 mapa do tesouro, 5 frutas douradas
+Inimigos: Caranguejos eremitas, piranhas, plantas carnívoras, drones Vorax
+
+🌋 ILHA 2: FORJA VULCÂNICA
+Tema: Vulcões ativos, rios de lava, cavernas de obsidiana
+Duração: 30–40 min por fase
+Objetivo: Recuperar o Cristal de Fogo
+
+Fase	Nome	Mecânica Nova	Chefe
+2-1	Encostas Ardentes	Plataformas móveis, lava	—
+2-2	Cavernas de Obsidiana	Escudo térmico, timing	—
+2-3	Rio de Magma	Montaria no dinossauro de fogo	—
+2-4	Coração do Vulcão	Puzzle de pressão, calor extremo	Ignis, o Devorador
+Segredos: 4 passagens, 2 mapas, 8 frutas douradas
+Inimigos: Golems de magma, morcegos flamejantes, serpentes de fogo, torretas Vorax
+
+❄️ ILHA 3: PICOS GLACIAIS
+Tema: Montanhas nevadas, cavernas de gelo, lagos congelados
+Duração: 30–45 min por fase
+Objetivo: Recuperar o Cristal de Gelo
+
+Fase	Nome	Mecânica Nova	Chefe
+3-1	Nevasca Eterna	Deslizamento no gelo, ventos	—
+3-2	Cavernas Cristalinas	Reflexão de luz, espelhos	—
+3-3	Lago Congelado	Patinação, quebra-gelo	—
+3-4	Ápice Glacial	Escalada vertical, avalanches	Frostbite, o Titã
+Segredos: 5 passagens, 3 mapas, 10 frutas douradas
+Inimigos: Yetis, lobos glaciais, elementais de gelo, canhões Vorax
+
+🌪️ ILHA 4: PENHASCOS TEMPESTADE
+Tema: Desfiladeiros, pontes suspensas, tempestades elétricas
+Duração: 35–50 min por fase
+Objetivo: Recuperar o Cristal do Vento
+
+Fase	Nome	Mecânica Nova	Chefe
+4-1	Desfiladeiro dos Ecos	Correntes de ar, planador	—
+4-2	Pontes Quebradas	Balanço, timing preciso	—
+4-3	Ninho do Trovão	Para-raios, eletricidade	—
+4-4	Olho da Tempestade	Voo montado, combate aéreo	Voltar, o Colosso
+Segredos: 4 passagens, 2 mapas, 9 frutas douradas
+Inimigos: Harpias, elementais de vento, robôs voadores Vorax, aranhas elétricas
+
+🌵 ILHA 5: DESERTO ESQUECIDO
+Tema: Dunas infinitas, ruínas antigas, oásis escondidos
+Duração: 35–50 min por fase
+Objetivo: Recuperar o Cristal da Terra
+
+Fase	Nome	Mecânica Nova	Chefe
+5-1	Dunas Movediças	Areia movediça, tempestades	—
+5-2	Ruínas de Zephyria	Puzzles de alavancas, hieróglifos	—
+5-3	Oásis Perdido	Subterrâneo, água subterrânea	—
+5-4	Tumba do Guardião	Labirinto, armadilhas	Terrax, o Imortal
+Segredos: 6 passagens, 3 mapas, 12 frutas douradas
+Inimigos: Escorpiões gigantes, múmias, vermes da areia, sentinelas Vorax
+
+🌊 ILHA 6: ABISMO ABISSAL
+Tema: Fossa oceânica, cidades submersas, criaturas bioluminescentes
+Duração: 40–55 min por fase
+Objetivo: Descobrir a entrada da Fortaleza Vorax
+
+Fase	Nome	Mecânica Nova	Chefe
+6-1	Zona Crepuscular	Pressão, oxigênio limitado	—
+6-2	Cidade de Atlantia	Puzzles de corrente, portas	—
+6-3	Fossa Sombria	Escuridão, bioluminescência	—
+6-4	Trono do Abismo	Combate subaquático, correntes	Leviatã Vorax
+Segredos: 5 passagens, 4 mapas, 11 frutas douradas
+Inimigos: Tubarões Vorax, águas-vivas elétricas, polvos gigantes, drones subaquáticos
+
+🌌 ILHA 7: FORTALEZA VORAX
+Tema: Nave-mãe biomecânica, corredores alienígenas, laboratórios
+Duração: 40–60 min por fase
+Objetivo: Resgatar Tina e sabotar a nave
+
+Fase	Nome	Mecânica Nova	Chefe
+7-1	Doca de Atracação	Gravidade alterada, lasers	—
+7-2	Laboratório de Corrupção	Hackear terminais, escolhas	—
+7-3	Cela de Contenção	Resgate de Tina, escolta	—
+7-4	Ponte de Comando	Combate contra o Alto Comandante	Comandante Vex
+Segredos: 4 passagens, 2 mapas, 8 frutas douradas
+Inimigos: Soldados Vorax, ciborgues, sentinelas, experimentos corrompidos
+
+💀 ILHA 8: NÚCLEO DEVORADOR
+Tema: Núcleo planetário, energia pura, caos elemental
+Duração: 45–70 min por fase
+Objetivo: Destruir o Núcleo e salvar Zephyria
+
+Fase	Nome	Mecânica Nova	Chefe
+8-1	Portal Dimensional	Todas as mecânicas combinadas	—
+8-2	Câmara dos Cristais	Puzzle final, sacrifício	—
+8-3	Núcleo Devorador	Combate em múltiplas fases	Devorador Prime
+8-4	Zephyria Renascida	Epílogo jogável, créditos	Forma Final
+Segredos: 7 passagens, 5 mapas, 15 frutas douradas
+Inimigos: Todos os anteriores corrompidos, avatares elementais, o próprio Núcleo
+
+4. EVOLUÇÃO DO PERSONAGEM
+📊 Sistema de Progressão
+text
+NÍVEL 1 ──────────────────────────────────────────────► NÍVEL 50
+  │                                                          │
+  ├── Atributos Base (sobem com XP)                        │
+  │   ├── Vida Máxima (+5 por nível)                       │
+  │   ├── Stamina (+3 por nível)                           │
+  │   ├── Velocidade (+0.5% por nível)                     │
+  │   └── Poder de Ataque (+2 por nível)                   │
+  │                                                          │
+  ├── Habilidades (desbloqueadas por marcos)               │
+  │   ├── Nv. 5  → Salto Duplo                             │
+  │   ├── Nv. 10 → Investida (dash)                        │
+  │   ├── Nv. 15 → Contra-Ataque                           │
+  │   ├── Nv. 20 → Escudo Elemental                        │
+  │   ├── Nv. 25 → Chamado do Dinossauro                   │
+  │   ├── Nv. 30 → Fúria de Zephyria                       │
+  │   ├── Nv. 40 → Forma Espectral                         │
+  │   └── Nv. 50 → Lenda de Zephyria                       │
+  │                                                          │
+  └── Árvore de Talentos (pontos a cada 5 níveis)          │
+      ├── Ramo do Guerreiro (combate)                      │
+      ├── Ramo do Explorador (mobilidade)                  │
+      └── Ramo do Guardião (suporte)                       │
+🦖 Guardiões Dinossauros (Sistema de Evolução)
+Cada dinossauro tem 3 estágios evolutivos, desbloqueados ao coletar Essências Elementais nas ilhas.
+
+Dinossauro	Elemento	Estágio 1	Estágio 2	Estágio 3
+Rex	Terra	Corrida	Investida	Terremoto
+Pyro	Fogo	Bola de fogo	Aura flamejante	Chuva de meteoros
+Glacio	Gelo	Sopro congelante	Plataforma de gelo	Nevasca
+Zephyr	Vento	Planar	Tornado	Voo livre
+Volt	Trovão	Choque	Cadeia elétrica	Tempestade
+Mecânica de Vínculo: Quanto mais você usa um dinossauro, maior o Nível de Vínculo (1–10). Vínculos altos desbloqueiam:
+
+Habilidades Passivas (ex: Rex regenera vida ao comer)
+
+Ultimates (ex: Pyro convoca chuva de meteoros)
+
+Aparência Alternativa (skins elementais)
+
+🎒 Equipamentos e Itens
+Categoria	Exemplos	Como obter
+Armas	Lança, Bumerangue, Martelo, Arco	Baús, chefes, loja
+Armaduras	Pele de Dino, Élfico, Vorax	Crafting, segredos
+Relíquias	Cristal de Vida, Amuleto do Tempo	Desafios, eventos
+Consumíveis	Frutas, Poções, Bombas	Coleta, loja
+Sistema de Crafting: Combine materiais dropados por inimigos para criar equipamentos. Cada item tem raridade (Comum → Lendário) e atributos aleatórios.
+
+5. BESTIÁRIO (MONSTROS)
+👾 Classificação de Inimigos
+Tipo	Comportamento	Exemplo
+Passivo	Ignora o jogador	Jabuti, Coelho
+Agressivo	Ataca ao ver	Caranguejo, Lobo
+Territorial	Defende área	Planta Carnívora
+Emboscador	Surge do chão/água	Verme da Areia
+Voador	Patrulha aérea	Harpia, Morcego
+Blindado	Requer tática	Golem, Tartaruga
+Elemental	Dano elemental	Elemental de Fogo
+Vorax	Tecnológico, adaptativo	Drone, Soldado
+🐲 Chefes Detalhados
+GUARDIÃO AQUA (Ilha 1)
+Forma: Dinossauro aquático corrompido por cristais Vorax
+
+Ataques: Jato d'água, onda de choque, redemoinho, invocação de piranhas
+
+Fases: 3 (100% → 60% → 30% de vida)
+
+Recompensa: Cristal de Água, Montaria Aqua, 1000 XP
+
+Estratégia: Use plataformas para evitar ondas; ataque quando ele emerge
+
+IGNIS, O DEVORADOR (Ilha 2)
+Forma: Golem de magma com núcleo Vorax exposto
+
+Ataques: Bola de fogo, erupção, onda de calor, meteoro
+
+Fases: 3
+
+Recompensa: Cristal de Fogo, Montaria Pyro, 1500 XP
+
+Estratégia: Use escudo térmico; ataque o núcleo quando exposto
+
+FROSTBITE, O TITÃ (Ilha 3)
+Forma: Yeti gigante com armadura de gelo
+
+Ataques: Sopro congelante, avalanche, estalactites, prisão de gelo
+
+Fases: 3
+
+Recompensa: Cristal de Gelo, Montaria Glacio, 2000 XP
+
+Estratégia: Destrua a armadura com fogo; evite o chão congelado
+
+VOLTAR, O COLOSSO (Ilha 4)
+Forma: Pássaro gigante com tempestade pessoal
+
+Ataques: Raio, tornado, chuva ácida, garras
+
+Fases: 3
+
+Recompensa: Cristal do Vento, Montaria Zephyr, 2500 XP
+
+Estratégia: Use planador; ataque quando ele pousa
+
+TERRAX, O IMORTAL (Ilha 5)
+Forma: Esfinge viva com poderes de terra
+
+Ataques: Terremoto, pilares de pedra, areia movediça, invocação de múmias
+
+Fases: 4
+
+Recompensa: Cristal da Terra, Montaria Rex, 3000 XP
+
+Estratégia: Destrua os pilares; use bombas para quebrar a armadura
+
+LEVIATÃ VORAX (Ilha 6)
+Forma: Serpente marinha biomecânica
+
+Ataques: Jato de plasma, redemoinho, choque elétrico, engolir
+
+Fases: 3
+
+Recompensa: Chave da Fortaleza, 3500 XP
+
+Estratégia: Ataque os pontos fracos; use correntes para se mover
+
+COMANDANTE VEX (Ilha 7)
+Forma: Alienígena humanoide com tecnologia avançada
+
+Ataques: Laser, teleporte, clones, campo de força
+
+Fases: 4
+
+Recompensa: Armadura Vorax, 4000 XP
+
+Estratégia: Use o ambiente; ataque quando ele recarrega
+
+DEVORADOR PRIME (Ilha 8)
+Forma: Entidade cósmica com todos os elementos
+
+Ataques: Todos os anteriores combinados + novos
+
+Fases: 5
+
+Recompensa: Final do jogo, 5000 XP
+
+Estratégia: Use todos os dinossauros; coordene com o time
+
+6. DESAFIOS CONSTANTES
+🔄 Sistema de Eventos Dinâmicos
+Evento	Frequência	Descrição	Recompensa
+Invasão Vorax	A cada 2h	Horda de inimigos ataca uma ilha	XP em dobro, materiais raros
+Tempestade Elemental	A cada 4h	Clima extremo altera uma ilha	Itens elementais, cristais
+Chefe Mundial	Diário	Chefe poderoso aparece	Equipamento Lendário
+Expedição Semanal	Semanal	Desafio com modificadores	Skins exclusivas
+Temporada	Mensal	Nova narrativa, recompensas	Battle Pass, montarias
+⚔️ Desafios Diários
+Coleta Rápida: Cole 50 frutas em 5 minutos
+
+Caçador: Derrote 20 inimigos sem morrer
+
+Explorador: Encontre 3 passagens secretas
+
+Velocista: Complete uma fase em menos de X minutos
+
+Sobrevivente: Fique 10 minutos sem perder vida
+
+Mestre dos Dinos: Use todos os 5 dinossauros em um dia
+
+Cooperativo: Complete uma fase com 4 jogadores
+
+🏆 Sistema de Conquistas
+Progresso: Complete todas as ilhas
+
+Coleta: Encontre todos os segredos
+
+Combate: Derrote todos os chefes sem morrer
+
+Social: Jogue com 10 amigos diferentes
+
+Mestre: Alcance nível 50 com todos os dinossauros
+
+Lenda: Complete 100% do jogo
+
+🌟 Desafios de Maestria
+Desafio	Requisito	Recompensa
+Speedrunner	Complete o jogo em < 3h	Skin Speedrun
+No-Hit	Complete uma ilha sem levar dano	Aura de Invulnerabilidade
+Pacifista	Complete uma fase sem matar	Medalha de Paz
+Colecionador	100% dos itens	Título "Lenda de Zephyria"
+Multiplayer Master	100 vitórias em PvP	Montaria exclusiva
+7. MULTIPLAYER — DETALHES
+🌐 Arquitetura de Rede
+text
+┌─────────────────────────────────────────────────────────┐
+│                    SERVIDOR (Node.js)                    │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
+│  │  Lógica de  │  │   Física    │  │   Estado    │     │
+│  │    Jogo     │  │  (Rapier3D) │  │  do Mundo   │     │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘     │
+│         │                │                │             │
+│         └────────────────┼────────────────┘             │
+│                          │                              │
+│                   ┌──────▼──────┐                       │
+│                   │  Geckos.io  │                       │
+│                   │  (WebRTC)   │                       │
+│                   └──────┬──────┘                       │
+└──────────────────────────┼──────────────────────────────┘
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+   ┌────▼────┐        ┌────▼────┐        ┌────▼────┐
+   │ Cliente │        │ Cliente │        │ Cliente │
+   │    1    │        │    2    │        │    3    │
+   │ Three.js│        │ Three.js│        │ Three.js│
+   └─────────┘        └─────────┘        └─────────┘
+🎮 Modos Multiplayer Detalhados
+Campanha Co-op (1–4 jogadores)
+Progressão compartilhada: todos sobem de nível juntos
+
+Revive: jogadores caídos podem ser ressuscitados por aliados
+
+Puzzles cooperativos: alavancas que exigem 2+ jogadores
+
+Chefes com mecânicas de aggro dividido
+
+Corrida Selvagem (2–8 jogadores)
+Checkpoints ao longo da fase
+
+Power-ups de velocidade, escudo e sabotagem
+
+Espectadores podem influenciar o mapa (armadilhas)
+
+Sobrevivência Vorax (1–4 jogadores)
+Ondas infinitas de inimigos
+
+Loja entre ondas para comprar melhorias
+
+Ranking global por tempo sobrevivido
+
+Duelo de Guardiões (2–4 jogadores)
+PvP em arenas montadas em dinossauros
+
+Cada dino tem habilidades balanceadas para PvP
+
+Torneios semanais com premiações
+
+🗣️ Comunicação
+Chat de voz integrado (WebRTC)
+
+Chat de texto com comandos rápidos
+
+Ping system: marque locais no mapa
+
+Emotes: expressões para comunicação não-verbal
+
+8. DETALHES TÉCNICOS (Three.js)
+🎨 Pipeline Visual
+Elemento	Técnica	Biblioteca
+Renderização	WebGL 2.0	Three.js
+Física	Rapier3D	@dimforge/rapier3d
+Rede	WebRTC	Geckos.io
+Pós-processamento	Bloom, SSAO, DOF	postprocessing
+Animações	GLTF/GLB	AnimationMixer
+Terreno	Heightmap + LOD	Custom Shader
+Água	Shader customizado	Three.js Water
+Partículas	GPU Particles	Three.js Points
+Iluminação	PBR + Shadow Maps	Three.js Lights
+🖥️ Requisitos de Sistema
+Componente	Mínimo	Recomendado
+CPU	Dual-core 2.0 GHz	Quad-core 3.0 GHz
+RAM	4 GB	8 GB
+GPU	WebGL 2.0	WebGL 2.0 + 4GB VRAM
+Rede	5 Mbps	20 Mbps
+Navegador	Chrome 90+	Chrome 120+
+📁 Estrutura de Pastas
+text
+hudson-adventure-3/
+├── client/
+│   ├── src/
+│   │   ├── core/          # Engine, loop, input
+│   │   ├── entities/      # Player, Dino, Enemy
+│   │   ├── levels/        # Ilhas, fases
+│   │   ├── ui/            # HUD, menus
+│   │   ├── net/           # Cliente de rede
+│   │   └── shaders/       # Shaders customizados
+│   └── assets/            # Modelos, texturas, sons
+├── server/
+│   ├── src/
+│   │   ├── game/          # Lógica autoritativa
+│   │   ├── physics/       # Rapier3D
+│   │   ├── net/           # Geckos.io
+│   │   └── db/            # Persistência
+│   └── config/
+├── shared/                # Código compartilhado
+│   ├── constants/         # Balanceamento
+│   ├── types/             # Tipos TypeScript
+│   └── utils/             # Helpers
+└── docs/                  # Documentação
+9. ROADMAP DE DESENVOLVIMENTO
+Fase	Duração	Entregável
+Protótipo	2 meses	Movimento, câmera, 1 fase jogável
+Alpha	4 meses	2 ilhas, 1 dinossauro, multiplayer básico
+Beta	6 meses	6 ilhas, 5 dinossauros, todos os modos
+Launch	2 meses	Polimento, balanceamento, lançamento
+Pós-Launch	Contínuo	Eventos, temporadas, novas ilhas
+10. DIFERENCIAIS COMPETITIVOS
+Dinossauros como ferramentas de puzzle — não apenas montarias
+
+Mundo vivo e reativo — clima, horário e ações afetam o jogo
+
+Multiplayer cooperativo profundo — puzzles e chefes exigem coordenação
+
+Progressão significativa — cada nível e item muda como você joga
+
+Desafios constantes — sempre há algo novo para dominar
+
+Narrativa envolvente — história emocionante com reviravoltas
+
+Acessibilidade — opções para todos os tipos de jogadores

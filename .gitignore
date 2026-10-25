@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+dev.log
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Playwright / tooling artifacts
+.playwright-mcp/
+.playwright/
+
+# Coverage
+coverage/
+
+# Misc
+*.tmp
