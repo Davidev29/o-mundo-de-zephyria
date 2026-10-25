@@ -1,4 +1,5 @@
 import React from "react";
+import { createRoot } from "react-dom/client";
 import { createGame } from "@core/GameFactory";
 import { CameraController } from "@core/CameraController";
 import { SceneManager } from "@core/SceneManager";
@@ -32,9 +33,8 @@ async function bootstrap(): Promise<void> {
   document.body.appendChild(menuContainer);
 
   let started = false;
-  import("react-dom/client").then(({ createRoot }) => {
-    const root = createRoot(menuContainer);
-    root.render(
+  const root = createRoot(menuContainer);
+  root.render(
       React.createElement(EnhancedMenu, {
         onStart: () => {
           started = true;
@@ -47,7 +47,6 @@ async function bootstrap(): Promise<void> {
         onCredits: () => console.log("Credits"),
       })
     );
-  });
 
   const net = new MockNetworkClient();
   await net.connect("mock://local");
