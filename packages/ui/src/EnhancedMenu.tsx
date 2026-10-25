@@ -68,7 +68,7 @@ export const EnhancedMenu: React.FC<{
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", background: "radial-gradient(circle at 50% 30%, #3a2035 0%, #1a1025 60%, #0a0810 100%)", color: "#f0e6d2", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
+    <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", background: "radial-gradient(circle at 50% 30%, #3a2035 0%, #1a1025 60%, #0a0810 100%)", border: "2px solid #ffd799", color: "#f0e6d2", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }} />
 
       {/* Glowing title */}
