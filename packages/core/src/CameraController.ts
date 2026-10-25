@@ -20,7 +20,7 @@ export class CameraController {
   private mouseRotation = 0;
 
   rotateMouse(deltaX: number): void {
-    this.mouseRotation += deltaX * 0.003;
+    this.mouseRotation -= deltaX * 0.003;
   }
 
   update(camera: THREE.PerspectiveCamera, dt: number): void {

@@ -90,7 +90,7 @@ export class CostaCoral extends Level {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
       const scale = 0.7 + rng() * 1.3;
-      dummy.position.set(x, 1.5 * scale, z);
+      dummy.position.set(x, 1.5 * scale + 0.1, z);
       dummy.scale.set(scale, scale, scale);
       dummy.rotation.y = rng() * Math.PI * 2;
       dummy.updateMatrix();
@@ -110,7 +110,7 @@ export class CostaCoral extends Level {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
       const scale = 0.5 + rng() * 1.5;
-      dummy.position.set(x, 0.3 * scale, z);
+      dummy.position.set(x, 0.3 * scale + 0.05, z);
       dummy.scale.set(scale, scale, scale);
       dummy.rotation.set(rng() * Math.PI, rng() * Math.PI, rng() * Math.PI);
       dummy.updateMatrix();
@@ -130,7 +130,7 @@ export class CostaCoral extends Level {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
       const scale = 0.6 + rng() * 0.8;
-      dummy.position.set(x, 0.25 * scale, z);
+      dummy.position.set(x, 0.25 * scale + 0.05, z);
       dummy.scale.set(scale, scale, scale);
       dummy.updateMatrix();
       bushMesh.setMatrixAt(i, dummy.matrix);
