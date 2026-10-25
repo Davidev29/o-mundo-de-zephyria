@@ -161,6 +161,11 @@ export class Player extends Entity {
     }
 
     const t = this.body.translation();
+    // Ensure player stays above ground
+    if (t.y < 0.4) {
+      this.body.setTranslation(new RAPIER.Vector3(t.x, 1.5, t.z), true);
+      this.body.setLinvel(new RAPIER.Vector3(this.body.linvel().x, 0, this.body.linvel().z), true);
+    }
     this.root.position.set(t.x, t.y, t.z);
 
     this.animation?.update(dt);

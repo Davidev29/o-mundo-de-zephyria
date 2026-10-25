@@ -78,46 +78,68 @@ export class CostaCoral extends Level {
       world.createCollider(bCol, bBody);
     }
 
-    // Procedural scatter: trees (instanced)
-    const treeCount = 1500;
-    const treeGeo = new THREE.ConeGeometry(0.8, 3, 6);
-    const treeMat = new THREE.MeshStandardMaterial({ color: 0x1f6f3a });
-    const treeMesh = new THREE.InstancedMesh(treeGeo, treeMat, treeCount);
-    treeMesh.castShadow = true;
-    treeMesh.receiveShadow = true;
-    const dummy = new THREE.Object3D();
-    for (let i = 0; i < treeCount; i++) {
+    // Procedural trees: trunk + crown
+    const treeTrunkGeo = new THREE.CylinderGeometry(0.15, 0.2, 1.2, 6);
+    const treeTrunkMat = new THREE.MeshStandardMaterial({ color: 0x5c3a1e });
+    const treeCrownGeo = new THREE.ConeGeometry(0.9, 2.5, 6);
+    const treeCrownMat = new THREE.MeshStandardMaterial({ color: 0x1f6f3a });
+
+    for (let i = 0; i < 300; i++) {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
       const scale = 0.7 + rng() * 1.3;
-      dummy.position.set(x, 1.5 * scale + 0.1, z);
-      dummy.scale.set(scale, scale, scale);
-      dummy.rotation.y = rng() * Math.PI * 2;
-      dummy.updateMatrix();
-      treeMesh.setMatrixAt(i, dummy.matrix);
-    }
-    treeMesh.instanceMatrix.needsUpdate = true;
-    this.root.add(treeMesh);
 
-    // Rocks (instanced)
+      // Trunk
+      const trunk = new THREE.Mesh(treeTrunkGeo, treeTrunkMat);
+      trunk.position.set(x, 0.6 * scale, z);
+      trunk.scale.set(scale, scale, scale);
+      trunk.castShadow = true;
+      trunk.receiveShadow = true;
+      this.root.add(trunk);
+
+      // Crown
+      const crown = new THREE.Mesh(treeCrownGeo, treeCrownMat);
+      crown.position.set(x, 1.2 * scale + 0.6 * scale, z);
+      crown.scale.set(scale, scale, scale);
+      crown.castShadow = true;
+      crown.receiveShadow = true;
+      this.root.add(crown);
+    }
+
+    // Grass patches (procedural detail)
+    const grassCount = 2000;
+    const grassGeo = new THREE.PlaneGeometry(0.8, 0.8);
+    const grassMat = new THREE.MeshStandardMaterial({ color: 0x4a7a3a, transparent: true, opacity: 0.9 });
+    for (let i = 0; i < grassCount; i++) {
+      const x = (rng() - 0.5) * (size - 30);
+      const z = (rng() - 0.5) * (size - 30);
+      const blade = new THREE.Mesh(grassGeo, grassMat);
+      blade.position.set(x, 0.02, z);
+      blade.rotation.x = -Math.PI / 2;
+      blade.rotation.z = rng() * Math.PI * 2;
+      blade.scale.set(1, 0.5 + rng() * 1.5, 1);
+      this.root.add(blade);
+    }
+
+    // Rocks with better variation
     const rockCount = 400;
-    const rockGeo = new THREE.DodecahedronGeometry(0.6, 0);
-    const rockMat = new THREE.MeshStandardMaterial({ color: 0x808080 });
-    const rockMesh = new THREE.InstancedMesh(rockGeo, rockMat, rockCount);
-    rockMesh.castShadow = true;
-    rockMesh.receiveShadow = true;
     for (let i = 0; i < rockCount; i++) {
       const x = (rng() - 0.5) * (size - 20);
       const z = (rng() - 0.5) * (size - 20);
       const scale = 0.5 + rng() * 1.5;
-      dummy.position.set(x, 0.3 * scale + 0.05, z);
-      dummy.scale.set(scale, scale, scale);
-      dummy.rotation.set(rng() * Math.PI, rng() * Math.PI, rng() * Math.PI);
-      dummy.updateMatrix();
-      rockMesh.setMatrixAt(i, dummy.matrix);
+      const rockGeo = new THREE.DodecahedronGeometry(0.6 * scale, 0);
+      const rockMat = new THREE.MeshStandardMaterial({
+        color: 0x7a6e60,
+        roughness: 0.9,
+        metalness: 0.1,
+      });
+      const rock = new THREE.Mesh(rockGeo, rockMat);
+      rock.position.set(x, 0.2 * scale + 0.05, z);
+      rock.castShadow = true;
+      rock.receiveShadow = true;
+      rock.rotation.set(rng() * Math.PI, rng() * Math.PI, rng() * Math.PI);
+      this.root.add(rock);
     }
-    rockMesh.instanceMatrix.needsUpdate = true;
-    this.root.add(rockMesh);
 
     // Bushes (instanced)
     const bushCount = 800;
