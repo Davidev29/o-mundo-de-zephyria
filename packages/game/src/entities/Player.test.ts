@@ -5,7 +5,7 @@ import { StateStore } from "../../../shared/src/state/StateStore";
 describe("Animation", () => {
   it("creates animation controller with clips", () => {
     const root = { add: () => {} } as any;
-    const clips = [];
+    const clips: any[] = [];
     const anim = new AnimationController(root, clips);
     expect(anim).toBeDefined();
   });

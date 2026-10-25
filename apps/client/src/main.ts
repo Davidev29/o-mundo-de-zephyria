@@ -1,10 +1,11 @@
+import React from "react";
 import { createGame } from "@core/GameFactory";
 import { CameraController } from "@core/CameraController";
 import { SceneManager } from "@core/SceneManager";
 import { CostaCoral } from "@game/levels/CostaCoral";
 import { Player } from "@game/entities/Player";
 import { ReactHUD as HUD } from "@ui/ReactHUD";
-import { Menu } from "@ui/Menu";
+import { EnhancedMenu } from "@ui/EnhancedMenu";
 import { MockNetworkClient } from "@net/NetworkClient";
 import { eventBus } from "@core/events/EventBus";
 import { stateStore } from "@shared/state/StateStore";
@@ -25,19 +26,38 @@ async function bootstrap(): Promise<void> {
   level.root.add(player.root);
 
   const hud = new HUD(document.getElementById("hud") as HTMLElement);
-  const menu = new Menu();
+  const menuContainer = document.createElement("div");
+  menuContainer.id = "menu";
+  document.body.appendChild(menuContainer);
+
+  let started = false;
+  import("react-dom/client").then(({ createRoot }) => {
+    const root = createRoot(menuContainer);
+    root.render(
+      React.createElement(EnhancedMenu, {
+        onStart: () => {
+          started = true;
+          audioManager.init();
+          root.render(null);
+          eventBus.emit("game:unpaused");
+        },
+        onConfig: () => console.log("Config"),
+        onGallery: () => console.log("Gallery"),
+        onCredits: () => console.log("Credits"),
+      })
+    );
+  });
+
   const net = new MockNetworkClient();
   await net.connect("mock://local");
 
   stateStore.set("currentIsland", level.name);
   eventBus.emit("game:started", { island: level.name });
 
-  let started = false;
   window.addEventListener("keydown", (e) => {
     if (e.code === "Enter" && !started) {
       started = true;
       audioManager.init();
-      menu.hide();
       eventBus.emit("game:unpaused");
     }
   });
