@@ -36,7 +36,7 @@ export const EnhancedMenu: React.FC<{
     let frame = 0;
     function draw() {
       if (!ctx) return;
-      ctx.fillStyle = "rgba(10, 8, 16, 0.25)";
+      ctx.fillStyle = "rgba(15, 10, 22, 0.35)";
       ctx.fillRect(0, 0, w, h);
       for (const p of particles) {
         p.x += p.vx;
@@ -68,7 +68,7 @@ export const EnhancedMenu: React.FC<{
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", background: "linear-gradient(135deg, #0a0810 0%, #1a1025 50%, #0a0810 100%)", color: "#f0e6d2", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
+    <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", background: "radial-gradient(circle at 50% 30%, #3a2035 0%, #1a1025 60%, #0a0810 100%)", color: "#f0e6d2", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
       <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }} />
 
       {/* Glowing title */}
