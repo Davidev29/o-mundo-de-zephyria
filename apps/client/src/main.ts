@@ -1,7 +1,6 @@
 import { createGame } from "@core/GameFactory";
 import { CameraController } from "@core/CameraController";
 import { SceneManager } from "@core/SceneManager";
-import { AssetLoader } from "@core/AssetLoader";
 import { CostaCoral } from "@game/levels/CostaCoral";
 import { Player } from "@game/entities/Player";
 import { ReactHUD as HUD } from "@ui/ReactHUD";
@@ -9,6 +8,7 @@ import { Menu } from "@ui/Menu";
 import { MockNetworkClient } from "@net/NetworkClient";
 import { eventBus } from "@core/events/EventBus";
 import { stateStore } from "@shared/state/StateStore";
+import { audioManager } from "@audio/AudioManager";
 
 async function bootstrap(): Promise<void> {
   const container = document.getElementById("app") as HTMLElement;
@@ -16,7 +16,6 @@ async function bootstrap(): Promise<void> {
 
   const cameraController = new CameraController();
   const sceneManager = new SceneManager(engine.scene);
-  const assetLoader = new AssetLoader(engine.renderer);
 
   const level = new CostaCoral();
   await sceneManager.load(level);
@@ -37,6 +36,7 @@ async function bootstrap(): Promise<void> {
   window.addEventListener("keydown", (e) => {
     if (e.code === "Enter" && !started) {
       started = true;
+      audioManager.init();
       menu.hide();
       eventBus.emit("game:unpaused");
     }
@@ -48,8 +48,10 @@ async function bootstrap(): Promise<void> {
     cameraController.update(engine.camera, dt);
     sceneManager.update(dt);
     hud.update({
-      health: 100,
-      stamina: 50,
+      health: player.health,
+      stamina: player.stamina,
+      hunger: player.hunger,
+      oxygen: (player as { oxygen?: number }).oxygen ?? 100,
       level: 1,
       island: level.name,
     });

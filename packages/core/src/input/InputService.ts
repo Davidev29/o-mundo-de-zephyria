@@ -6,7 +6,8 @@ export type Action =
   | "jump"
   | "interact"
   | "attack"
-  | "pause";
+  | "pause"
+  | "dash";
 
 const KEY_MAP: Record<string, Action> = {
   KeyW: "moveForward",
@@ -21,6 +22,8 @@ const KEY_MAP: Record<string, Action> = {
   KeyE: "interact",
   KeyF: "attack",
   Escape: "pause",
+  ShiftLeft: "dash",
+  ShiftRight: "dash",
 };
 
 export class InputService {

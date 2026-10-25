@@ -27,6 +27,20 @@ export class AudioManager {
     if (this.sfxGain) this.sfxGain.gain.value = v;
   }
 
+  playBeep(frequency = 440, duration = 0.08): void {
+    if (!this.ctx) this.init();
+    if (!this.ctx || !this.sfxGain) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.frequency.value = frequency;
+    osc.connect(gain);
+    gain.connect(this.sfxGain);
+    gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+    osc.start();
+    osc.stop(this.ctx.currentTime + duration);
+  }
+
   async playSfx(url: string): Promise<void> {
     if (!this.ctx || !this.sfxGain) this.init();
     if (!this.ctx || !this.sfxGain) return;
@@ -37,6 +51,32 @@ export class AudioManager {
     src.buffer = audio;
     src.connect(this.sfxGain);
     src.start();
+  }
+
+  playFootstep(): void {
+    this.playBeep(180, 0.08);
+  }
+
+  playCollect(): void {
+    this.playBeep(880, 0.12);
+  }
+
+  playHit(): void {
+    this.playBeep(220, 0.15);
+  }
+
+  playMusic(): void {
+    // Placeholder: loop a low drone
+    if (!this.ctx) this.init();
+    if (!this.ctx || !this.musicGain) return;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.value = 110;
+    osc.connect(gain);
+    gain.connect(this.musicGain);
+    gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+    osc.start();
   }
 
   dispose(): void {
