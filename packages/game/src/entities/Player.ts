@@ -110,8 +110,8 @@ export class Player extends Entity {
     }
 
     const move = new THREE.Vector3();
-    if (this.input.isAction("moveForward")) move.z -= 1;
-    if (this.input.isAction("moveBackward")) move.z += 1;
+    if (this.input.isAction("moveForward")) move.z += 1;
+    if (this.input.isAction("moveBackward")) move.z -= 1;
     if (this.input.isAction("moveLeft")) move.x -= 1;
     if (this.input.isAction("moveRight")) move.x += 1;
     if (move.lengthSq() > 0) {
@@ -150,8 +150,9 @@ export class Player extends Entity {
       audioManager.playFootstep();
     }
 
-    // jump with coyote + buffer
-    if (this.jumpBufferTimer > 0 && this.coyoteTimer > 0 && this.stamina >= 5) {
+    // jump with coyote + buffer (only when grounded or coyote active, and not already rising)
+    const velBeforeJump = this.body.linvel();
+    if (this.jumpBufferTimer > 0 && this.coyoteTimer > 0 && this.stamina >= 5 && velBeforeJump.y <= 0.1) {
       this.body.applyImpulse(new RAPIER.Vector3(0, PLAYER.jumpImpulse, 0), true);
       this.jumpBufferTimer = 0;
       this.coyoteTimer = 0;

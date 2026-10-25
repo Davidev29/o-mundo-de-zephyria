@@ -10,7 +10,7 @@ export const PLAYER = {
   baseHealth: 100,
   baseStamina: 50,
   baseSpeed: 6,
-  jumpImpulse: 7,
+  jumpImpulse: 4,
   healthPerLevel: 5,
   staminaPerLevel: 3,
 } as const;

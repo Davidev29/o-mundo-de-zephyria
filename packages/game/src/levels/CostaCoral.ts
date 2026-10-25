@@ -49,7 +49,7 @@ export class CostaCoral extends Level {
     const world = getWorld();
     const groundDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 0);
     const groundBody = world.createRigidBody(groundDesc);
-    const groundCollider = RAPIER.ColliderDesc.cuboid(size / 2, 0.1, size / 2);
+    const groundCollider = RAPIER.ColliderDesc.cuboid(size / 2, 0.5, size / 2);
     world.createCollider(groundCollider, groundBody);
 
     // Water
