@@ -112,8 +112,8 @@ export class Player extends Entity {
     const move = new THREE.Vector3();
     if (this.input.isAction("moveForward")) move.z += 1;
     if (this.input.isAction("moveBackward")) move.z -= 1;
-    if (this.input.isAction("moveLeft")) move.x -= 1;
-    if (this.input.isAction("moveRight")) move.x += 1;
+    if (this.input.isAction("moveLeft")) move.x += 1;
+    if (this.input.isAction("moveRight")) move.x -= 1;
     if (move.lengthSq() > 0) {
       move.normalize();
       move.applyAxisAngle(new THREE.Vector3(0, 1, 0), yaw);

@@ -54,6 +54,12 @@ async function bootstrap(): Promise<void> {
   stateStore.set("currentIsland", level.name);
   eventBus.emit("game:started", { island: level.name });
 
+  let mouseX = 0;
+  window.addEventListener("mousemove", (e) => {
+    mouseX = (e as MouseEvent).movementX || 0;
+    if (started) cameraController.rotateMouse(mouseX);
+  });
+
   window.addEventListener("keydown", (e) => {
     if (e.code === "Enter" && !started) {
       started = true;

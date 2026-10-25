@@ -17,6 +17,12 @@ export class CameraController {
     this.hasPrev = true;
   }
 
+  private mouseRotation = 0;
+
+  rotateMouse(deltaX: number): void {
+    this.mouseRotation += deltaX * 0.003;
+  }
+
   update(camera: THREE.PerspectiveCamera, dt: number): void {
     if (!this.target) return;
 
@@ -30,7 +36,9 @@ export class CameraController {
     const lookAhead = this.targetVelocity.clone().multiplyScalar(0.3);
     lookAhead.y = 0;
 
-    const desiredPos = this.target.position.clone().add(this.offset).add(lookAhead);
+    const rotOffset = this.offset.clone();
+    rotOffset.applyAxisAngle(new THREE.Vector3(0, 1, 0), this.mouseRotation);
+    const desiredPos = this.target.position.clone().add(rotOffset).add(lookAhead);
 
     // collision: simple raycast from target to desired (approximate by pushing in if too close)
     // We'll clamp distance to at least minDistance from target
