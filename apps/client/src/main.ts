@@ -28,6 +28,7 @@ async function bootstrap(): Promise<void> {
   const hud = new HUD(document.getElementById("hud") as HTMLElement);
   const menuContainer = document.createElement("div");
   menuContainer.id = "menu";
+  menuContainer.style.zIndex = "20";
   document.body.appendChild(menuContainer);
 
   let started = false;
